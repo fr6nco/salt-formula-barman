@@ -1,0 +1,12 @@
+#TODO check
+parameters:
+  git:
+    _support:
+      collectd:
+        enabled: false
+      heka:
+        enabled: false
+      sensu:
+        enabled: true
+      sphinx:
+        enabled: true

@@ -1,0 +1,6 @@
+applications:
+- barman
+parameters:
+  barman:
+    client:
+      enabled: true

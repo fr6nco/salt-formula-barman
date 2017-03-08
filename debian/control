@@ -1,0 +1,16 @@
+Source: salt-formula-barman
+Maintainer: Tomas Boros <tomas.boros92@gmail.com
+Section: admin
+Priority: optional
+Build-Depends: salt-master, python, python-yaml, debhelper (>= 9),
+ salt-formula-linux
+Standards-Version: 3.9.6
+Homepage: http://www.tcpcloud.eu
+Vcs-Browser: https://github.com/fr6nco/salt-formula-barman
+Vcs-Git: https://github.com/fr6nco/salt-formula-barman.git
+
+Package: salt-formula-barman
+Architecture: all
+Depends: ${misc:Depends}, salt-master, reclass, salt-formula-linux
+Description: Git salt formula
+ Install and configure Git client.

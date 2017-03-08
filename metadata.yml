@@ -1,0 +1,6 @@
+name: "barman"
+version: "0.1"
+source: "https://github.com/fr6nco/salt-formula-barman"
+dependencies:
+- name: linux
+  source: "https://github.com/tcpcloud/salt-formula-linux"
