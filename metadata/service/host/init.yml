@@ -2,5 +2,5 @@ applications:
 - barman
 parameters:
   barman:
-    client:
+    server:
       enabled: true

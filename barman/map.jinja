@@ -1,14 +1,12 @@
 
 {%- set barman = salt['grains.filter_by']({
     'Debian': {
-        'pkg': 'barman',
-        'repo': 'https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-redhat96-9.6-3.noarch.rpm',
-        'dist': 'debian'
+        'pkgs': ['barman']
     },
-    'RedHat': {
-        'pkg': 'barman',
-        'repo': 'deb http://apt.postgresql.org/pub/repos/apt/ main',
-        'repodist': 'wheezy-pgdg',
-        'dist': 'redhat'
+    'Ubuntu': {
+        'pkgs': ['barman']
     },
-}, merge=salt['pillar.get']('barman:client')) %}
+    'CentOS': {
+        'pkgs': ['barman']
+    },
+}, grain='os', merge=salt['pillar.get']('barman:host')) %}
