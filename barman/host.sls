@@ -11,8 +11,7 @@ postgres_repo:
     - name: deb http://apt.postgresql.org/pub/repos/apt/ {{grains.oscodename}}-pgdg main
     - dist: {{grains.oscodename}}
     - file: /etc/apt/sources.list.d/pgdg.list
-    - keyid: ACCC4CF8
-    - keyserver: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+    - key_url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
     - refresh_db: true
 {% endif %}
 
