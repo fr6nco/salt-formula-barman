@@ -1,4 +1,4 @@
-{%- from "barman/map.jinja" import client with context %}
+{%- from "barman/map.jinja" import host with context %}
 
 {%- if host.enabled %}
 
