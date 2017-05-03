@@ -9,7 +9,7 @@ postgres_repo:
   pkgrepo.managed:
     - humanname: PostgreSQL repo
     - name: deb http://apt.postgresql.org/pub/repos/apt/ {{grains.oscodename}}-pgdg main
-    - dist: {{grains.oscodename}}
+    - dist: {{grains.oscodename}}-pgdg
     - file: /etc/apt/sources.list.d/pgdg.list
     - key_url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
     - refresh_db: true
