@@ -1,5 +1,5 @@
 
-{%- set barman = salt['grains.filter_by']({
+{%- set host = salt['grains.filter_by']({
     'Debian': {
         'pkgs': ['barman']
     },
