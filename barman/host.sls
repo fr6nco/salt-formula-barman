@@ -17,7 +17,7 @@ postgres_repo:
 
 barman_package:
   pkg.installed:
-    - pkgs: barman
+    - name: barman
 
 barman_service:
   service.running:
