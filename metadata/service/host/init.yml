@@ -4,3 +4,4 @@ parameters:
   barman:
     server:
       enabled: true
+      user: barman

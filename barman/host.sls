@@ -19,6 +19,13 @@ barman_package:
   pkg.installed:
     - name: barman
 
+/etc/barman.conf:
+  file.managed:
+    - source: salt://barman/files/barman.conf
+    - template: jinja
+    - requrie:
+      - pkg: barman_package
+
 barman_service:
   service.running:
     - name: barman
