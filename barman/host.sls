@@ -3,7 +3,7 @@
 test_echo:
   cmd.run:
     - runas: root
-    - name: echo {{ host }}
+    - name: echo {{ show_full_context() }}
 
 {%- if host.enabled %}
 
