@@ -58,10 +58,6 @@ genrsakey:
 
 
 {% for backup in host.backups %}
-test_echo:
-  cmd.run:
-    - runas: root
-    - name: echo {{ backup }}
 
 /etc/barman.d/{{backup.name}}.conf:
   file.managed:
