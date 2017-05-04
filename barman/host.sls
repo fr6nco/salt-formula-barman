@@ -72,7 +72,7 @@ genrsakey:
     - template: jinja
     - source: salt://barman/files/streaming-template.conf
     - context:
-      backup: {{backup}}
+        backup: {{backup}}
 
 /etc/barman.d/{{key}}.conf:
   file.managed:
@@ -82,7 +82,7 @@ genrsakey:
     - template: jinja
     - source: salt://barman/files/ssh-template.conf
     - context:
-      backup: {{backup}}
+        backup: {{backup}}
 
 {% endfor %}
 
