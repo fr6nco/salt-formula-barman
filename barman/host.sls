@@ -59,6 +59,7 @@ genrsakey:
 
 {% for backup in host.backups %}
 
+{%- if backup.type == 'streaming' %}
 /etc/barman.d/{{backup.name}}.conf:
   file.managed:
     - user: barman
@@ -69,6 +70,9 @@ genrsakey:
     - context:
         backup: {{backup}}
 
+{% endif %}
+
+{%- if backup.type == 'ssh' %}
 /etc/barman.d/{{backup.name}}.conf:
   file.managed:
     - user: barman
@@ -78,6 +82,7 @@ genrsakey:
     - source: salt://barman/files/ssh-template.conf
     - context:
         backup: {{backup}}
+{% endif %}
 
 {% endfor %}
 
