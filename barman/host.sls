@@ -64,7 +64,7 @@ test_echo:
     - runas: root
     - name: echo {{ backup }}
 
-/etc/barman.d/{{backup['name']}}.conf:
+/etc/barman.d/{{backup}}.conf:
   file.managed:
     - user: barman
     - group: barman
@@ -74,7 +74,7 @@ test_echo:
     - context:
         backup: {{backup}}
 
-/etc/barman.d/{{backup['name']}}.conf:
+/etc/barman.d/{{backup}}.conf:
   file.managed:
     - user: barman
     - group: barman
