@@ -57,7 +57,12 @@ genrsakey:
 {% endif %}
 
 
-{% for backup in host.backups %}
+{% for key, backup in host.backups.iteritems() %}
+
+test_echo:
+  cmd.run:
+    - runas: root
+    - name: echo {{ key }}
 
 test_echo:
   cmd.run:
