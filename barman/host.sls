@@ -2,9 +2,7 @@
 
 {%- if host.enabled %}
 
-
 {%- if grains.os == 'Ubuntu' %}
-
 postgres_repo:
   pkgrepo.managed:
     - humanname: PostgreSQL repo
@@ -37,7 +35,7 @@ barman:
   file.directory:
     - user: barman
     - group: barman
-    - mode: 0755
+    - mode: 0700
     - maktedirs: true
 
 {% if not salt['file.file_exists']('/var/lib/barman/.ssh/id_rsa') %}
@@ -49,13 +47,23 @@ genrsakey:
   file.managed:
     - user: barman
     - group: barman
-    - mode: 0600
+    - mode: 0500
 
 /var/lib/barman/.ssh/id_rsa.pub:
   file.managed:
     - user: barman
     - group: barman
-    - mode: 0600
+    - mode: 0500
 {% endif %}
+
+{% for key, backup in host.backups.iteritems() %}
+/etc/barman.d/{{key}}.conf:
+  file.managed:
+    - user: barman
+    - group: barman
+    - template: jinja
+    - source: salt://barman/files/streaming-template.conf
+{% endfor %}
+
 
 {%- endif %}
