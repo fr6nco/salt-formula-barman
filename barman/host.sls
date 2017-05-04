@@ -57,19 +57,13 @@ genrsakey:
 {% endif %}
 
 
-{% for key, backup in host.backups.iteritems() %}
-
-test_echo:
-  cmd.run:
-    - runas: root
-    - name: echo {{ key }}
-
+{% for backup in host.backups %}
 test_echo:
   cmd.run:
     - runas: root
     - name: echo {{ backup }}
 
-/etc/barman.d/{{backup}}.conf:
+/etc/barman.d/{{backup.name}}.conf:
   file.managed:
     - user: barman
     - group: barman
@@ -79,7 +73,7 @@ test_echo:
     - context:
         backup: {{backup}}
 
-/etc/barman.d/{{backup}}.conf:
+/etc/barman.d/{{backup.name}}.conf:
   file.managed:
     - user: barman
     - group: barman
