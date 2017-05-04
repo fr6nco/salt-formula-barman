@@ -59,7 +59,7 @@ genrsakey:
 
 {% for backup in host.backups %}
 
-/etc/barman.d/{{bakcup.name}}.conf:
+/etc/barman.d/{{backup.name}}.conf:
   file.managed:
     - user: barman
     - group: barman
@@ -77,7 +77,7 @@ genrsakey:
     - template: jinja
     - source: salt://barman/files/ssh-template.conf
     - context:
-        backup: {{bakcup}}
+        backup: {{backup}}
 
 {% endfor %}
 
