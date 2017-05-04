@@ -1,5 +1,10 @@
 {%- from "barman/map.jinja" import host with context %}
 
+test_echo:
+  cmd.run:
+    - runas: root
+    - name: echo {{ host }}
+
 {%- if host.enabled %}
 
 {%- if grains.os == 'Ubuntu' %}
@@ -56,12 +61,9 @@ genrsakey:
     - mode: 0500
 {% endif %}
 
-{{ show_full_context() }}
-
 
 {% for key, backup in host.backups.iteritems() %}
 
-{%- if backup['type'] == 'streaming' %}
 /etc/barman.d/{{key}}.conf:
   file.managed:
     - user: barman
@@ -71,9 +73,7 @@ genrsakey:
     - source: salt://barman/files/streaming-template.conf
     - context:
       backup: {{backup}}
-{% endif %}
 
-{%- if backup['type'] == 'ssh' %}
 /etc/barman.d/{{key}}.conf:
   file.managed:
     - user: barman
@@ -83,7 +83,6 @@ genrsakey:
     - source: salt://barman/files/ssh-template.conf
     - context:
       backup: {{backup}}
-{% endif %}
 
 {% endfor %}
 
