@@ -59,7 +59,12 @@ genrsakey:
 
 {% for backup in host.backups %}
 
-/etc/barman.d/{{backup.name}}.conf:
+test_echo:
+  cmd.run:
+    - runas: root
+    - name: echo {{ backup }}
+
+/etc/barman.d/{{backup['name']}}.conf:
   file.managed:
     - user: barman
     - group: barman
@@ -69,7 +74,7 @@ genrsakey:
     - context:
         backup: {{backup}}
 
-/etc/barman.d/{{backup.name}}.conf:
+/etc/barman.d/{{backup['name']}}.conf:
   file.managed:
     - user: barman
     - group: barman
