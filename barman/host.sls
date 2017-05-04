@@ -26,11 +26,36 @@ barman_package:
     - requrie:
       - pkg: barman_package
 
-barman_service:
-  service.running:
-    - name: barman
-    - enable: true
-    - require:
-      - pkg: barman_package
+## should be created automaticallly anyways
+barman:
+  user.present:
+    - fullname: Billy Barman
+    - shell: /bin/bash
+    - home: /var/lib/barman
+
+/var/lib/barman/.ssh:
+  file.directory:
+    - user: barman
+    - group: barman
+    - mode: 0755
+    - maktedirs: true
+
+{% if not salt['file.file_exists']('/var/lib/barman/.ssh/id_rsa') %}
+genrsakey:
+  cmd.run:
+    - name: ssh-keygen -b 2048 -t rsa -f /var/lib/barman/.ssh/id_rsa -q -N ""
+
+/var/lib/barman/.ssh/id_rsa:
+  file.managed:
+    - user: barman
+    - group: barman
+    - mode: 0600
+
+/var/lib/barman/.ssh/id_rsa.pub:
+  file.managed:
+    - user: barman
+    - group: barman
+    - mode: 0600
+{% endif %}
 
 {%- endif %}
