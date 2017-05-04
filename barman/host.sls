@@ -57,7 +57,7 @@ genrsakey:
 {% endif %}
 
 
-{% for key,backup in host.backups %}
+{% for key in host.backups.keys() %}
 
 /etc/barman.d/{{key}}.conf:
   file.managed:
@@ -67,7 +67,7 @@ genrsakey:
     - template: jinja
     - source: salt://barman/files/streaming-template.conf
     - context:
-        backup: {{backup}}
+        backup: {{host.backups['key']}}
 
 /etc/barman.d/{{key}}.conf:
   file.managed:
@@ -77,7 +77,7 @@ genrsakey:
     - template: jinja
     - source: salt://barman/files/ssh-template.conf
     - context:
-        backup: {{backup}}
+        backup: {{host.backups['key']}}
 
 {% endfor %}
 
