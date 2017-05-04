@@ -1,10 +1,5 @@
 {%- from "barman/map.jinja" import host with context %}
 
-test_echo:
-  cmd.run:
-    - runas: root
-    - name: echo {{ show_full_context() }}
-
 {%- if host.enabled %}
 
 {%- if grains.os == 'Ubuntu' %}
@@ -62,7 +57,7 @@ genrsakey:
 {% endif %}
 
 
-{% for key, backup in host.backups.iteritems() %}
+{% for backup in host.backups %}
 
 /etc/barman.d/{{key}}.conf:
   file.managed:
