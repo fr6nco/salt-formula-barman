@@ -56,6 +56,9 @@ genrsakey:
     - mode: 0500
 {% endif %}
 
+{{ show_full_context() }}
+
+
 {% for key, backup in host.backups.iteritems() %}
 
 {%- if backup['type'] == 'streaming' %}
