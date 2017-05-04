@@ -57,7 +57,7 @@ genrsakey:
 {% endif %}
 
 
-{% for key,backup in host.backups.iteritems() %}
+{% for key,backup in host.backups %}
 
 /etc/barman.d/{{key}}.conf:
   file.managed:
