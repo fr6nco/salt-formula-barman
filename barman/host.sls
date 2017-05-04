@@ -58,7 +58,7 @@ genrsakey:
 
 {% for key, backup in host.backups.iteritems() %}
 
-{%- if backup.type == 'streaming' %}
+{%- if backup['type'] == 'streaming' %}
 /etc/barman.d/{{key}}.conf:
   file.managed:
     - user: barman
@@ -70,7 +70,7 @@ genrsakey:
       backup: {{backup}}
 {% endif %}
 
-{%- if backup.type == 'ssh' %}
+{%- if backup['type'] == 'ssh' %}
 /etc/barman.d/{{key}}.conf:
   file.managed:
     - user: barman
