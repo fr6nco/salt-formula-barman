@@ -56,6 +56,10 @@ genrsakey:
     - mode: 0500
 {% endif %}
 
+## Cleanup folder
+/etc/barman.d:
+  file.directory:
+    - clean: true
 
 {% for backup in host.backups %}
 
