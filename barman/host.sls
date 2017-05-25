@@ -36,7 +36,7 @@ barman:
     - user: barman
     - group: barman
     - mode: 0700
-    - maktedirs: true
+    - makedirs: true
 
 {% if not salt['file.file_exists']('/var/lib/barman/.ssh/id_rsa') %}
 genrsakey:
