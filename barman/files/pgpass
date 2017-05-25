@@ -1,0 +1,3 @@
+{% for backup in backups %}
+{{backup.hostname}}:{{backup.port}}:{{backup.database}}:{{backup.username}}:{{backup.password}}
+{% endfor %}

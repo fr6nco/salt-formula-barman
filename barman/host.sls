@@ -56,6 +56,15 @@ genrsakey:
     - mode: 0500
 {% endif %}
 
+/var/lib/barman/.pgpass:
+  file.managed:
+    - user: barman
+    - group: barman
+    - mode: 0500
+    - source: salt://barman/files/pgpass
+    - context: 
+      - backups: {{host.backups}}
+
 ## Cleanup folder
 /etc/barman.d:
   file.directory:
@@ -73,7 +82,6 @@ genrsakey:
     - source: salt://barman/files/streaming-template.conf
     - context:
         backup: {{backup}}
-
 {% endif %}
 
 {%- if backup.type == 'ssh' %}
@@ -89,5 +97,4 @@ genrsakey:
 {% endif %}
 
 {% endfor %}
-
 {%- endif %}
