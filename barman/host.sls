@@ -97,5 +97,10 @@ genrsakey:
         backup: {{backup}}
 {% endif %}
 
+{{backup.server_pubkey}}:
+  ssh_auth.present:
+    - user: barman
+    - enc: ssh-rsa
+
 {% endfor %}
 {%- endif %}
