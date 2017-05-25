@@ -1,4 +1,6 @@
 {%- for backup in backups %}
 {{backup.hostname}}:{{backup.port}}:{{backup.database}}:{{backup.username}}:{{backup.password}}
-{%- if backup.type == 'streaming' %}{{backup.hostname}}:{{backup:port}}:{{backup.database}}:{{backup.streaming_username}}:{{backup.streaming_password}}{% endif %}
+{%- if backup.type == 'streaming' %}
+{{backup.hostname}}:{{backup.port}}:{{backup.database}}:{{backup.streaming_username}}:{{backup.streaming_password}}
+{% endif -%}
 {% endfor %}
