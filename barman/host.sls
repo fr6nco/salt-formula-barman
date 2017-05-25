@@ -62,6 +62,7 @@ genrsakey:
     - group: barman
     - mode: 0500
     - source: salt://barman/files/pgpass
+    - template: jinja
     - context: 
         backups: {{host.backups}}
 
