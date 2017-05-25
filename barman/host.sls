@@ -63,7 +63,7 @@ genrsakey:
     - mode: 0500
     - source: salt://barman/files/pgpass
     - context: 
-      - backups: {{host.backups}}
+        backups: {{host.backups}}
 
 ## Cleanup folder
 /etc/barman.d:
