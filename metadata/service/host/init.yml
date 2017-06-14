@@ -2,7 +2,7 @@ applications:
 - barman
 parameters:
   barman:
-    server:
+    host:
       enabled: true
       user: barman
       backups: []

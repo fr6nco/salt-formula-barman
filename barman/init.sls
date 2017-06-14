@@ -1,6 +1,6 @@
 {%- if pillar.barman is defined %}
-include:
 {%- if pillar.barman.host is defined %}
+include:
 - barman.host
 {%- endif %}
 {%- endif %}
