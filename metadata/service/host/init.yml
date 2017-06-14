@@ -5,3 +5,4 @@ parameters:
     server:
       enabled: true
       user: barman
+      backups: []
