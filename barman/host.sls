@@ -104,8 +104,9 @@ genrsakey:
         backup: {{backup}}
 {% endif %}
 
-{{backup.server_pubkey}}:
+{{backup.server_pubkey}}_{{backup.name}}:
   ssh_auth.present:
+    - name: {{bakcup.server_pubkey}}
     - user: barman
     - enc: ssh-rsa
 
