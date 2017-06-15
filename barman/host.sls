@@ -71,6 +71,13 @@ genrsakey:
   file.directory:
     - clean: true
 
+{% if 'backup_dir' in host %}
+{{host.backup_dir}}:
+  file.directory:
+    - user: barman
+    - group: barman
+{% endif %}
+
 {% for backup in host.backups %}
 
 {%- if backup.type == 'streaming' %}
